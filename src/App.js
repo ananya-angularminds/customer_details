@@ -1,24 +1,18 @@
-import logo from "./logo.svg";
+import { BrowserRouter, Route } from "react-router-dom";
 import "./App.css";
+import Home from "./component/Home";
+import NeewEntry from "./component/NewEntry";
+import MainComponent from "./MainComponent";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.hi i am testing this
-          app
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <MainComponent>
+        <BrowserRouter>
+          <Route exact path="/" component={Home} />
+          <Route path="/createuser" component={NeewEntry} />
+        </BrowserRouter>
+      </MainComponent>
     </div>
   );
 }
