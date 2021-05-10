@@ -232,19 +232,19 @@ export default class NeewEntry extends Component {
           <fieldset>
             <Form.Group as={Row}>
               <Form.Label as="legend" column sm={2}>
-                Status
+                Vaccinated
               </Form.Label>
               <Col sm={10}>
                 <Form.Check
                   type="radio"
-                  label="Active"
+                  label="Yes"
                   name="formHorizontalRadios2"
                   id="formHorizontalRadios2"
                   onClick={() => this.onSelect("Active")}
                 />
                 <Form.Check
                   type="radio"
-                  label="Inactive"
+                  label="No"
                   name="formHorizontalRadios2"
                   id="formHorizontalRadios1"
                   onClick={() => this.onSelect("Inactive")}

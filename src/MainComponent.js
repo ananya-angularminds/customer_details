@@ -7,7 +7,7 @@ export default class MainComponent extends Component {
     return (
       <div>
         <nav>
-          <label class="logo"> Customer Details</label>
+          <label class="logo">Vaccine Statistics </label>
           {/* <ul>
             <li>
               <a href="/#">Home</a>

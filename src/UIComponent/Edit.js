@@ -95,11 +95,9 @@ function Edit({ singleCustomer, handleConformRequest }) {
       </Button>
 
       <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Edit User</Modal.Title>
-        </Modal.Header>
         {singleCustomer != null ? (
-          <Modal.Body>
+          <Modal.Body className={status} closeButton>
+            <Modal.Title>{fname + " " + lname}</Modal.Title>
             {/* first name */}
             <Form.Group controlId="formBasicEmail">
               <Form.Label>First name</Form.Label>
@@ -197,23 +195,23 @@ function Edit({ singleCustomer, handleConformRequest }) {
             <fieldset>
               <Form.Group as={Row}>
                 <Form.Label as="legend" column sm={2}>
-                  Status
+                  Vaccinated
                 </Form.Label>
                 <Col sm={10}>
                   <Form.Check
                     type="radio"
-                    label="Inactive"
+                    label="Yes"
                     name="formHorizontalRadios"
                     id="formHorizontalRadios1"
-                    value="Inactive"
+                    value="Active"
                     onClick={selectedState}
                   />
                   <Form.Check
                     type="radio"
-                    label="Active"
+                    label="No"
                     name="formHorizontalRadios"
                     id="formHorizontalRadios2"
-                    value="Active"
+                    value="Inactive"
                     onClick={selectedState}
                   />
                 </Col>

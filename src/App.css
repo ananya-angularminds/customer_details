@@ -130,3 +130,11 @@
 #Inactive {
   background-image: linear-gradient(#ffff99, white, white);
 }
+
+.Active {
+  background-image: linear-gradient(#ccf2ff, white, white);
+}
+
+.Inactive {
+  background-image: linear-gradient(#ffff99, white, white);
+}

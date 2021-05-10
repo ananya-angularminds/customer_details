@@ -124,18 +124,9 @@ export default class Home extends Component {
             {this.state.allCustomer
               ? this.state.allCustomer.map((item) => {
                   return (
-                    <div
-                      className="card"
-                      key={item._id}
-                      id={item.status}
-                      // style={{
-                      //   background:
-                      //     item.status === "Active" ? "green" : "yellow",
-                      // }}
-                    >
+                    <div className="card" key={item._id} id={item.status}>
                       <div className="card__content">
                         <ul>
-                          {console.log(item.profileImg)}
                           <li
                             style={{
                               borderBottom: "1px solid black",
