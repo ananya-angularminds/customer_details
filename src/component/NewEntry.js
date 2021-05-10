@@ -269,16 +269,6 @@ export default class NeewEntry extends Component {
                 Save Changes
               </Button>
             </div>
-            <div style={{ padding: "10px" }}>
-              <Button
-                variant="primary"
-                onClick={() => {
-                  this.props.history.push("/");
-                }}
-              >
-                Home
-              </Button>
-            </div>
           </div>
         </Form>
       </div>

@@ -17,6 +17,7 @@ function Edit({ singleCustomer, handleConformRequest }) {
 
   function handleClose() {
     setShow(false);
+    handleConformRequest("CLOSE");
   }
   const handleShow = () => setShow(true);
 
@@ -41,12 +42,13 @@ function Edit({ singleCustomer, handleConformRequest }) {
 
   const handleSubmit = () => {
     console.log(fname, lname, bio, dob, status, org, "submit handler");
+
     const payload = {
       fname: fname,
       lname: lname,
-      bio: org,
+      bio: bio,
       dob: dob,
-      org: bio,
+      org: org,
       status: status,
       id: editId,
     };
@@ -71,10 +73,12 @@ function Edit({ singleCustomer, handleConformRequest }) {
 
   const onSelectValue = (e) => {
     console.log(e.target.value);
-    setbio(e.target.value);
+    setOrg(e.target.value);
   };
 
-  console.log(status);
+  const selectedState = (e) => {
+    setStatus(e.target.value);
+  };
 
   return (
     <>
@@ -132,7 +136,7 @@ function Edit({ singleCustomer, handleConformRequest }) {
                 className="form-control"
                 id="rawMaterial"
               >
-                <option>{bio}</option>
+                <option>{org}</option>
                 <option
                   value="Employed"
                   name="Employed"
@@ -162,10 +166,13 @@ function Edit({ singleCustomer, handleConformRequest }) {
 
             {/* date of birth */}
             <Form.Group controlId="formBasicEmail">
-              <Form.Label>Date of birth</Form.Label>
+              <Form.Label>
+                Date of birth{" "}
+                <span style={{ color: "#ff6666" }}>[selected date {dob}]</span>
+              </Form.Label>
               <Form.Control
                 type="date"
-                placeholder="Enter last name"
+                placeholder={dob}
                 name="dob"
                 value={dob}
                 onChange={(e) => setdob(e.target.value)}
@@ -179,9 +186,9 @@ function Edit({ singleCustomer, handleConformRequest }) {
                 type="text"
                 placeholder="Enter Bio"
                 name="bio"
-                value={org}
+                value={bio}
                 onChange={(e) => {
-                  setOrg(e.target.value);
+                  setbio(e.target.value);
                 }}
               />
               <Form.Text className="text-muted"></Form.Text>
@@ -199,7 +206,7 @@ function Edit({ singleCustomer, handleConformRequest }) {
                     name="formHorizontalRadios"
                     id="formHorizontalRadios1"
                     value="Inactive"
-                    onClick={(e) => setStatus(e.target.value)}
+                    onClick={selectedState}
                   />
                   <Form.Check
                     type="radio"
@@ -207,7 +214,7 @@ function Edit({ singleCustomer, handleConformRequest }) {
                     name="formHorizontalRadios"
                     id="formHorizontalRadios2"
                     value="Active"
-                    onClick={(e) => setStatus(e.target.value)}
+                    onClick={selectedState}
                   />
                 </Col>
               </Form.Group>

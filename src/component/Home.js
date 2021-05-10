@@ -11,6 +11,7 @@ export default class Home extends Component {
       /* all data of customer */
       allCustomer: null,
       singleCustomer: null,
+      count: 1,
     };
   }
 
@@ -45,30 +46,40 @@ export default class Home extends Component {
   //edit handler
   handleEdit = (data) => {
     //console.log(data, "id check");
-    api
-      .getSingleData(data)
-      .then((result) => {
-        //console.log(result);
-        const payload = {
-          _id: data,
-          data: result,
-        };
-        this.setState({
-          singleCustomer: result,
+
+    let { count } = this.state;
+    this.setState({
+      count: count + 1,
+    });
+    if (count === 1) {
+      api
+        .getSingleData(data)
+        .then((result) => {
+          //console.log(result);
+          const payload = {
+            _id: data,
+            data: result,
+          };
+          this.setState({
+            singleCustomer: result,
+          });
+        })
+        .catch((err) => {
+          console.log(err);
         });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    }
   };
 
   handleConformRequest = (data) => {
-    console.log(data);
+    //console.log(data);
     if (data === "UPDATED") {
       this.getRequest();
     } else {
       this.getRequest();
     }
+    this.setState({
+      count: 1,
+    });
   };
 
   //render
@@ -113,17 +124,34 @@ export default class Home extends Component {
             {this.state.allCustomer
               ? this.state.allCustomer.map((item) => {
                   return (
-                    <div className="card" key={item._id}>
+                    <div
+                      className="card"
+                      key={item._id}
+                      id={item.status}
+                      // style={{
+                      //   background:
+                      //     item.status === "Active" ? "green" : "yellow",
+                      // }}
+                    >
                       <div className="card__content">
                         <ul>
+                          {console.log(item.profileImg)}
                           <li
                             style={{
                               borderBottom: "1px solid black",
                               paddingTop: "10px",
                               paddingBottom: "10px",
+                              display: "flex",
                             }}
                           >
-                            <h5 style={{ color: "#3333cc" }}>
+                            <img
+                              src={item.profileImg}
+                              alt="Avatar"
+                              className="avatar"
+                            />
+                            <h5
+                              style={{ color: "#3333cc", paddingLeft: "15px" }}
+                            >
                               {item.fname + " " + item.lname}
                             </h5>
                           </li>
@@ -135,9 +163,6 @@ export default class Home extends Component {
                           </li>
                           <li>
                             <b>Bio: </b> {item.bio}
-                          </li>
-                          <li>
-                            <b>Status: </b> {item.status}
                           </li>
                           <li>
                             <span
